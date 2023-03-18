@@ -1,6 +1,6 @@
 let player = {
-    name: "Per",
-    chips: 200
+    name: "Sayan",
+    chips: 500
 }
 
 let cards = []
@@ -32,6 +32,7 @@ function startGame() {
     let secondCard = getRandomCard()
     cards = [firstCard, secondCard]
     sum = firstCard + secondCard
+    player.chips -= 100
     renderGame()
 }
 
@@ -47,11 +48,16 @@ function renderGame() {
     } else if (sum === 21) {
         message = "You've got Blackjack!"
         hasBlackJack = true
+        player.chips += 300
     } else {
-        message = "You're out of the game!"
+        message = "You're out of the game! Better luck next time"
         isAlive = false
     }
+    if(player.chips===0){
+        message= "You've used all Chips. Kindly Refresh after this game"
+    }
     messageEl.textContent = message
+    playerEl.textContent = player.name + ": $" + player.chips
 }
 
 
